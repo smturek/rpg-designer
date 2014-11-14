@@ -1,0 +1,20 @@
+.container
+
+  .well.col-md-4.col-md-offset-4.signup
+    %h1 Sign-In
+
+    - if @sign_in_error
+      %p.error
+        = @sign_in_error
+
+    = form_tag({:action => 'new', :controller => 'authentication'}, {:class => 'form-horizontal'}) do |f|
+
+      .form-group
+        = label_tag :email, nil, class: "col-md-2 control-label"
+        = email_field_tag :email, nil, class: "form-control"
+
+      .form-group
+        = label_tag :password, nil, class: "col-md-2 control-label"
+        = password_field_tag :password, nil, class: "form-control"
+
+        = submit_tag "Sign in", :class => "btn btn-primary signin"

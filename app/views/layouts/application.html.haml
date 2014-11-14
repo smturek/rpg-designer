@@ -1,0 +1,36 @@
+!!!
+%html
+  %head
+    %title RPG Designer
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  %body
+    .nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          %a.navbar-brand{:href => "/"} RPG
+
+        .collapse.navbar-collapse
+          %ul.nav.navbar-nav
+            %li.active
+              = link_to "Characters", characters_path
+            %li.active
+              = link_to "Monsters", monsters_path
+            %li.active
+              = link_to "Battle", battle_path
+
+          %ul.nav.navbar-nav.navbar-right
+            - if current_user
+              %li
+                = link_to "#{current_user.username}", root_path #user_path(current_user)
+              %li
+                = link_to "Sign Out", signout_path
+            - else
+              %li
+                = link_to "Sign Up", signup_path
+              %li
+                = link_to "Sign In", signin_path
+
+    = yield

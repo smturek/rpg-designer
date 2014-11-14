@@ -1,0 +1,28 @@
+.container
+
+  = link_to "Create New Monster", new_monster_path, :class => "btn btn-default pull-right"
+
+  .page_header
+    %h1 Monsters
+
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Name
+        %th HP
+        %th MP
+
+    %tbody
+    - @monsters.each do |monster|
+      %tr
+        %td
+          = monster.name
+        %td
+          = monster.hp
+        %td
+          = monster.mp
+        %td
+          = link_to "Edit", edit_monster_path(monster)
+          |
+          = link_to "Delete", monster_path(monster), method: :delete,
+            :data => {:confirm => "Are you sure?"}

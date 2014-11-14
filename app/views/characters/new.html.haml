@@ -1,0 +1,48 @@
+.container
+
+  .page-header
+    %h1 New Character
+
+  = form_for @character, :html => {:class => 'form-horizontal'} do |f|
+
+    .form-group
+      = f.label :name, :class => "control-label col-md-1"
+      .col-md-4
+        = f.text_field :name, :class => "form-control"
+
+    .form-group
+      = f.label :char_class, "Class", :class => "control-label col-md-1"
+      .col-md-4
+        = f.text_field :char_class, :class => "form-control"
+
+    .form-group
+      = f.label :hp, :class => "control-label col-md-1"
+      .col-md-2
+        = f.number_field :hp, :class => "form-control"
+
+    .form-group
+      = f.label :mp, :class => "control-label col-md-1"
+      .col-md-2
+        = f.number_field :mp, :class => "form-control col-md-1"
+
+    .form-group
+      = f.label :str, :class => "control-label col-md-1"
+      .col-md-2
+        = f.number_field :str, :class => "form-control col-md-1"
+
+    .form-group
+      = f.label :agi, :class => "control-label col-md-1"
+      .col-md-2
+        = f.number_field :agi, :class => "form-control col-md-1"
+
+    .form-group
+      = f.label :int, :class => "control-label col-md-1"
+      .col-md-2
+        = f.number_field :int, :class => "form-control col-md-1"
+
+    .form-group
+      = f.label :vit, :class => "control-label col-md-1"
+      .col-md-2
+        = f.number_field :vit, :class => "form-control col-md-1"
+
+    = f.submit "Create New Character", :class => "btn btn-primary bottom-button col-md-offset-1"

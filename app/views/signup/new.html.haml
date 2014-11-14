@@ -1,0 +1,34 @@
+.container
+
+  .page-header
+    %h1 Sign Up for RPG Designer!
+
+  - if @user.errors.present?
+    %ul
+    - @user.errors.full_messages.each do |message|
+      %li.error
+        = message
+
+  = form_for @user, :html => {:class => 'form-horizontal'}, url: signup_path do |f|
+
+    .form-group.signup-name
+      = f.label :username, "User Name", :class => "control-label col-md-2"
+      .col-md-4
+        = f.text_field :username, :class => "form-control"
+
+    .form-group
+      = f.label :email, :class => "col-md-2 control-label"
+      .col-md-4
+        = f.email_field :email, :class => "form-control"
+
+    .form-group
+      = f.label :password, :class => "col-md-2 control-label"
+      .col-md-4
+        = f.password_field :password, :class => "form-control"
+
+    .form-group
+      = f.label :password_confirmation, :class => "col-md-2 control-label"
+      .col-md-4
+        = f.password_field :password_confirmation, :class => "form-control"
+
+    = f.submit "Create", :class => "btn btn-primary signup col-md-offset-2"
