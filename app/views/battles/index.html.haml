@@ -1,0 +1,26 @@
+.container
+
+  .page-header
+    %h1 Battle History
+
+  %table.table
+    %thead
+      %tr
+        %th Hero
+        %th Monster
+    %tbody
+    - @battles.each do |battle|
+      %tr
+        %td
+          = battle.hero.name
+        %td
+          = battle.monster.name
+        %td
+          = link_to "Delete", battle_path(battle), method: :delete,
+            :data => { :confirm => "Are you sure?"}
+
+
+
+  .row
+    .col-md-2.col-md-offset-3
+    = link_to "New Battle", new_battle_path, :class => "btn btn-default"

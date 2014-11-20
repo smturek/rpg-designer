@@ -20,7 +20,7 @@ class MonstersController < ApplicationController
 
   def update
     set_monster
-    monster.update
+    @monster.update(monster_params)
     redirect_to monsters_path
   end
 
@@ -30,17 +30,17 @@ class MonstersController < ApplicationController
 
   def destroy
     set_monster
-    monster.destroy
+    @monster.destroy
     redirect_to monsters_path
   end
 
   private
 
   def monster_params
-    params.require(:monster).permit(:name, :hp, :mp)
+    params.require(:monster).permit(:name, :hp, :att)
   end
 
   def set_monster
-    monster = Monster.find(params[:id])
+    @monster = Monster.find(params[:id])
   end
 end

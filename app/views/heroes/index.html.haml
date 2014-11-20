@@ -1,0 +1,28 @@
+.container
+
+  = link_to "Create New Hero", new_hero_path, :class => "btn btn-default pull-right"
+
+  .page_header
+    %h1 Heroes
+
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Name
+        %th HP
+        %th Attack
+
+    %tbody
+    - @heroes.each do |hero|
+      %tr
+        %td
+          = hero.name
+        %td
+          = hero.hp
+        %td
+          = hero.att
+        %td
+          = link_to "Edit", edit_hero_path(hero)
+          |
+          = link_to "Delete", hero_path(hero), method: :delete,
+            :data => {:confirm => 'Are you sure?'}

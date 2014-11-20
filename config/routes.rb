@@ -2,18 +2,13 @@ Rails.application.routes.draw do
 
   root "pages#index"
 
-  resources :characters, :users, :monsters
+  resources :heroes, :users, :monsters, :battles
 
   get "/signup" => "signup#new", as: :signup
   post "/signup" => "signup#create"
   get '/sign-in' => 'authentication#new', as: :signin
   post '/sign-in' => 'authentication#create'
   get '/sign-out' => 'authentication#destroy', as: :signout
-
-  get '/battle' => "battle#index", as: :battle
-  get '/fight' => "battle#fight", as: :fight
-  get '/victory' => "battle#victory", as: :victory
-  get '/defeat' => "battle#defeat", as: :defeat
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

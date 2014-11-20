@@ -10,7 +10,7 @@
       %tr
         %th Name
         %th HP
-        %th MP
+        %th Attack
 
     %tbody
     - @monsters.each do |monster|
@@ -20,7 +20,7 @@
         %td
           = monster.hp
         %td
-          = monster.mp
+          = monster.att
         %td
           = link_to "Edit", edit_monster_path(monster)
           |

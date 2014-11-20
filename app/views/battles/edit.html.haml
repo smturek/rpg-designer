@@ -1,14 +1,8 @@
 .container
 
-  - if :hero_id != nil && :monster_id != nil
-    - hero = @characters.sample
-    - monster = @monsters.sample
-  -else
-    - hero = @hero
-    - monster = @monster
+  .page_header
+    %h1 FIGHT!!
 
-  .page-header
-    %h1 Battle Home
 
   .row
     .col-md-4.col-md-offset-1
@@ -26,14 +20,15 @@
           %tr
             %th Name
             %th HP
-            %th Power
+            %th Attack
         %tbody
           %tr
             %td
-              = hero.name
+              = @battle.hero.name
             %td
-              = hero.hp
-            %td 5
+              = @battle.hero.hp
+            %td
+              = @battle.hero.att
 
     .col-md-3.col-md-offset-3
       %table.table
@@ -41,15 +36,17 @@
           %tr
             %th Name
             %th HP
-            %th Power
+            %th Attack
         %tbody
           %tr
             %td
-              = monster.name
+              = @battle.monster.name
             %td
-              = monster.hp
-            %td 3
+              = @battle.monster.hp
+            %td
+              = @battle.monster.att
 
-  .row
-    .col-md-2.col-md-offset-3
-    = link_to "Fight!", fight_path(hero_id: hero.id, monster_id: monster.id), :class => "btn btn-default"
+  = form_for @battle do |f|
+    = f.hidden_field(:hero_id, :value => @battle.hero.id)
+    = f.hidden_field(:monster_id, :value => @battle.monster.id)
+    = f.submit "Attack"
