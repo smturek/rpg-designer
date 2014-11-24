@@ -4,7 +4,7 @@
     %h1
       = title
 
-  = form_for @hero, :html => {:class => 'form-horizontal'} do |f|
+  = form_for $hero, :html => {:class => 'form-horizontal'} do |f|
 
     .form-group
       = f.label :name, :class => "control-label col-md-1"
@@ -17,7 +17,7 @@
         = f.number_field :hp, :class => "form-control"
 
     .form-group
-      = f.label :att, "Attack" :class => "control-label col-md-1"
+      = f.label :att, "Attack", :class => "control-label col-md-1"
       .col-md-2
         = f.number_field :att, :class => "form-control col-md-1"
 

@@ -1,15 +1,17 @@
 class BattlesController < ApplicationController
 
-  $hero = Hero.new("Good Guy", 10, 10)
-  $monster = Monster.new("Bad Guy", 50, 1)
+  #$hero = Hero.new("Good Guy", 10, 10)
+  #$monster = Monster.new("Bad Guy", 50, 1)
 
   def index
     @battles = Battle.all
   end
 
   def new
-    @hero = $hero
-    @monster = $monster
+    @heroes = Hero.all
+    @monsters = Monster.all
+    $hero = @heroes.sample
+    $monster = @monsters.sample
   end
 
   def create
