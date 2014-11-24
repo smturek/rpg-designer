@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root "pages#index"
 
-  resources :heroes, :users, :monsters, :battles
+  resources :heros, :users, :monsters, :battles
 
   get "/signup" => "signup#new", as: :signup
   post "/signup" => "signup#create"

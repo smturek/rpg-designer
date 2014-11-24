@@ -1,4 +1,4 @@
-class HeroesController < ApplicationController
+class HerosController < ApplicationController
 
   def index
     @heroes = Hero.all
@@ -11,7 +11,7 @@ class HeroesController < ApplicationController
   def create
     @hero = Hero.new(hero_params)
     @hero.save
-    redirect_to heroes_path
+    redirect_to heros_path
   end
 
   def show
@@ -26,13 +26,13 @@ class HeroesController < ApplicationController
     set_hero
     @hero = Hero.new(hero_params)
     @hero.save
-    redirect_to heroes_path
+    redirect_to heros_path
   end
 
   def destroy
     set_hero
     @hero.destroy
-    redirect_to heroes_path
+    redirect_to heros_path
   end
 
   private
