@@ -1,13 +1,15 @@
 class BattlesController < ApplicationController
 
+  $hero = Hero.new("Good Guy", 10, 10)
+  $monster = Monster.new("Bad Guy", 50, 1)
+
   def index
     @battles = Battle.all
   end
 
   def new
-    @battle = Battle.new
-    @heroes = Hero.all
-    @monsters = Monster.all
+    @hero = $hero
+    @monster = $monster
   end
 
   def create
@@ -20,8 +22,17 @@ class BattlesController < ApplicationController
     set_battle
   end
 
-  def show
-    set_battle
+  def fight
+    $hero.attack($monster.att)
+    $monster.attack($hero.att)
+    @hero = $hero
+    @monster = $monster
+    if @hero.hp <= 0
+      redirect_to defeat_path
+    end
+    if @monster.hp <= 0
+      redirect_to victory_path
+    end
   end
 
   def destroy
@@ -32,9 +43,7 @@ class BattlesController < ApplicationController
 
   def update
     set_battle
-    set_hero
-    @battle.hero.hp -= @battle.monster.att
-    @hero.update(params.require(:hero).permit(:name))
+    @battle.update(battle_params)
     redirect_to battle_path(@battle)
   end
 

@@ -1,15 +1,17 @@
 .container
 
-  .page_header
-    %h1 FIGHT!!
+  .page-header
+    %h1 FIGHT!!!
 
   .row
     .col-md-4.col-md-offset-1
-      %h2 Hero
+      %h2
+        = @hero.name
       %i.fa.fa-male.fa-5x
 
     .col-md-4.col-md-offset-2
-      %h2 Monster
+      %h2
+        = @monster.name
       %i.fa.fa-bug.fa-5x
 
   .row
@@ -17,30 +19,26 @@
       %table.table
         %thead
           %tr
-            %th Name
             %th HP
             %th Attack
         %tbody
           %tr
             %td
-              = @battle.hero.name
+              = @hero.hp
             %td
-              = @battle.hero.hp
-            %td
-              = @battle.hero.att
+              = @hero.att
 
     .col-md-3.col-md-offset-3
       %table.table
         %thead
           %tr
-            %th Name
             %th HP
             %th Attack
         %tbody
           %tr
             %td
-              = @battle.monster.name
+              = @monster.hp
             %td
-              = @battle.monster.hp
-            %td
-              = @battle.monster.att
+              = @monster.att
+
+  = link_to "Attack", fight_path

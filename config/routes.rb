@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   post '/sign-in' => 'authentication#create'
   get '/sign-out' => 'authentication#destroy', as: :signout
 
+  get '/fight' => 'battles#fight', as: :fight
+  get '/victory' => 'battles#victory', as: :victory
+  get '/defeat' => 'battles#defeat', as: :defeat
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
