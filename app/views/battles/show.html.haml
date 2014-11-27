@@ -1,6 +1,6 @@
 
-= if @battle.hero.hp <= 0
+= if @battle.hero.base_health <= 0
   - render "result", title: "Defeat!"
 
-= if @battle.hero.hp > 0
+= if @battle.hero.base_health > 0
   - render "result", title: "Victory!"

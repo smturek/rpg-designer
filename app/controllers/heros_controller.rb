@@ -37,7 +37,8 @@ class HerosController < ApplicationController
   private
 
   def hero_params
-    params.require(:hero).permit(:name, :hp, :att)
+    params.require(:hero).permit(:name, :base_health, :current_health, :max_health,
+                                :base_attack, :current_attack, :max_attack, :experience)
   end
 
   def set_hero

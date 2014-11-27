@@ -37,7 +37,8 @@ class MonstersController < ApplicationController
   private
 
   def monster_params
-    params.require(:monster).permit(:name, :hp, :att)
+    params.require(:monster).permit(:name, :base_health, :current_health, :max_health,
+                                    :base_attack, :current_attack, :max_attack)
   end
 
   def set_monster

@@ -18,7 +18,7 @@ class BattlesController < ApplicationController
 
   def edit
     set_battle
-    if @battle.hero.hp <= 0 || @battle.monster.hp <= 0
+    if @battle.hero.base_health <= 0 || @battle.monster.base_health <= 0
       redirect_to battle_path(@battle)
     end
   end
@@ -35,16 +35,16 @@ class BattlesController < ApplicationController
 
   def update
     set_battle
-    @battle.hero.attack(@battle.monster.att)
-    if @battle.monster.hp <= 0
+    @battle.hero.attack(@battle.monster.base_attack)
+    if @battle.monster.base_health <= 0
       Battle.transaction do
         @battle.hero.save!
         @battle.monster.save!
       end
       redirect_to battle_path(@battle)
     else
-    @battle.monster.attack(@battle.hero.att)
-      if @battle.hero.hp <= 0
+    @battle.monster.attack(@battle.hero.base_attack)
+      if @battle.hero.base_health <= 0
         Battle.transaction do
           @battle.hero.save!
           @battle.monster.save!

@@ -18,29 +18,29 @@
         %thead
           %tr
             %th Name
-            %th HP
+            %th Health
             %th Attack
         %tbody
           %tr
             %td
               = @battle.hero.name
             %td
-              = @battle.hero.hp
+              = @battle.hero.base_health
             %td
-              = @battle.hero.att
+              = @battle.hero.base_attack
 
     .col-md-3.col-md-offset-3
       %table.table
         %thead
           %tr
             %th Name
-            %th HP
+            %th Health
             %th Attack
         %tbody
           %tr
             %td
               = @battle.monster.name
             %td
-              = @battle.monster.hp
+              = @battle.monster.base_health
             %td
-              = @battle.monster.att
+              = @battle.monster.base_health

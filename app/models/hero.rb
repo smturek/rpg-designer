@@ -2,8 +2,8 @@ class Hero < ActiveRecord::Base
 
   has_many :battles
 
-  def attack(monster_att)
-    self.hp -= monster_att
+  def attack(monster_attack)
+    self.base_health -= monster_attack
   end
 
 end

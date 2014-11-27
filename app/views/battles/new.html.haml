@@ -21,32 +21,32 @@
         %thead
           %tr
             %th Name
-            %th HP
+            %th Health
             %th Attack
         %tbody
           %tr
             %td
               = hero.name
             %td
-              = hero.hp
+              = hero.base_health
             %td
-              = hero.att
+              = hero.base_attack
 
     .col-md-3.col-md-offset-3
       %table.table
         %thead
           %tr
             %th Name
-            %th HP
+            %th Health
             %th Attack
         %tbody
           %tr
             %td
               = monster.name
             %td
-              = monster.hp
+              = monster.base_health
             %td
-              = monster.att
+              = monster.base_attack
 
   = form_for @battle do |f|
     = f.hidden_field(:hero_id, :value => hero.id)
