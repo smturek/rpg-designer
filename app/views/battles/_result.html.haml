@@ -1,10 +1,7 @@
 .container
 
-  - hero = @heroes.sample
-  - monster = @monsters.sample
-
-  .page-header
-    %h1 Battle Home
+  .page_header
+    %h1= title
 
   .row
     .col-md-4.col-md-offset-1
@@ -26,11 +23,11 @@
         %tbody
           %tr
             %td
-              = hero.name
+              = @battle.hero.name
             %td
-              = hero.hp
+              = @battle.hero.hp
             %td
-              = hero.att
+              = @battle.hero.att
 
     .col-md-3.col-md-offset-3
       %table.table
@@ -42,13 +39,8 @@
         %tbody
           %tr
             %td
-              = monster.name
+              = @battle.monster.name
             %td
-              = monster.hp
+              = @battle.monster.hp
             %td
-              = monster.att
-
-  = form_for @battle do |f|
-    = f.hidden_field(:hero_id, :value => hero.id)
-    = f.hidden_field(:monster_id, :value => monster.id)
-    = f.submit
+              = @battle.monster.att

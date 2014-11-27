@@ -18,6 +18,9 @@ class BattlesController < ApplicationController
 
   def edit
     set_battle
+    if @battle.hero.hp <= 0 || @battle.monster.hp <= 0
+      redirect_to battle_path(@battle)
+    end
   end
 
   def show
@@ -33,9 +36,28 @@ class BattlesController < ApplicationController
   def update
     set_battle
     @battle.hero.attack(@battle.monster.att)
+    if @battle.monster.hp <= 0
+      Battle.transaction do
+        @battle.hero.save!
+        @battle.monster.save!
+      end
+      redirect_to battle_path(@battle)
+    else
     @battle.monster.attack(@battle.hero.att)
-    @battle.update(battle_params)
-    redirect_to battle_path(@battle)
+      if @battle.hero.hp <= 0
+        Battle.transaction do
+          @battle.hero.save!
+          @battle.monster.save!
+        end
+        redirect_to battle_path(@battle)
+      else
+        Battle.transaction do
+          @battle.hero.save!
+          @battle.monster.save!
+        end
+        redirect_to edit_battle_path(@battle)
+      end
+    end
   end
 
   private

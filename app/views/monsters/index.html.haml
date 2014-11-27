@@ -9,7 +9,7 @@
     %thead
       %tr
         %th Name
-        %th HP
+        %th Health
         %th Attack
 
     %tbody
@@ -18,9 +18,9 @@
         %td
           = monster.name
         %td
-          = monster.hp
+          = monster.base_health
         %td
-          = monster.att
+          = monster.base_attack
         %td
           = link_to "Edit", edit_monster_path(monster)
           |

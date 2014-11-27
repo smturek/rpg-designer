@@ -1,0 +1,30 @@
+.container
+
+  .page-header
+    %h1 Item List
+
+  = link_to "Create New Item", new_item_path, :class => "btn btn-default pull-right"
+
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Type
+        %th Attack
+        %th Health
+    %tbody
+    - @items.each do |item|
+      %tr
+        %td
+          = item.name
+        %td
+          = item.type
+        %td
+          = item.attack
+        %td
+          = item.health
+        %td
+          = link_to "Edit", edit_item_path(item)
+          |
+          = link_to "Delete", item_path(item), method: :delete,
+            :data => {:confirm => "Are you sure?"}

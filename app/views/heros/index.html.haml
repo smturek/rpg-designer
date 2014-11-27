@@ -9,8 +9,9 @@
     %thead
       %tr
         %th Name
-        %th HP
+        %th Health
         %th Attack
+        %th Experience
 
     %tbody
     - @heroes.each do |hero|
@@ -18,9 +19,11 @@
         %td
           = hero.name
         %td
-          = hero.hp
+          = hero.base_health
         %td
-          = hero.att
+          = hero.base_attack
+        %td
+          = hero.experience
         %td
           = link_to "Edit", edit_hero_path(hero)
           |

@@ -12,13 +12,13 @@
         = f.text_field :name, :class => "form-control"
 
     .form-group
-      = f.label :hp, "HP", :class => "control-label col-md-1"
+      = f.label :base_health, "Health", :class => "control-label col-md-1"
       .col-md-4
-        = f.number_field :hp, :class => "form-control"
+        = f.number_field :base_health, :class => "form-control"
 
     .form-group
-      = f.label :att, "Attack", :class => "control-label col-md-1"
+      = f.label :base_attack, "Attack", :class => "control-label col-md-1"
       .col-md-4
-        = f.number_field :att, :class => "form-control"
+        = f.number_field :base_attack, :class => "form-control"
 
     = f.submit button, :class => "col-md-offset-1 btn btn-default"

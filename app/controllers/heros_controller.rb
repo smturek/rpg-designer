@@ -24,8 +24,7 @@ class HerosController < ApplicationController
 
   def update
     set_hero
-    @hero = Hero.new(hero_params)
-    @hero.save
+    @hero.update(hero_params)
     redirect_to heros_path
   end
 
