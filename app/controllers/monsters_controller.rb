@@ -10,6 +10,8 @@ class MonstersController < ApplicationController
 
   def create
     @monster = Monster.new(monster_params)
+    @monster.max_health = @monster.base_health
+    @monster.current_health = @monster.base_health
     @monster.save
     redirect_to monsters_path
   end

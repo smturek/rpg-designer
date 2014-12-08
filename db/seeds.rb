@@ -10,3 +10,8 @@ Battle.delete_all
 Monster.delete_all
 Hero.delete_all
 Item.delete_all
+
+
+10.times do
+  
+end

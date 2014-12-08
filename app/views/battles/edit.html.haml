@@ -4,43 +4,49 @@
     .page_header.text-center
       %h1 FIGHT!!
 
+  - hero_current_health = @battle.hero.current_health
+  - monster_current_health = @battle.monster.current_health
+  - hero_percent = (hero_current_health*100)/@battle.hero.max_health
+  - monster_percent = (monster_current_health*100)/@battle.monster.max_health
 
   .row
     .col-md-4.col-md-offset-1
       %h2= @battle.hero.name
       %i.fa.fa-male.fa-5x
+      %h5= "Health: #{hero_current_health} / #{@battle.hero.max_health}"
+      .progress
+        .progress-bar.progress-bar-danger{"aria-valuemax" => "#{@battle.hero.max_health}", "aria-valuemin" => "0",
+        "aria-valuenow" => "#{hero_current_health}", :role => "progressbar", :style => "width: #{hero_percent}%;"}
+
 
     .col-md-4.col-md-offset-2
       %h2= @battle.monster.name
       %i.fa.fa-bug.fa-5x
+      %h5= "Health: #{monster_current_health} / #{@battle.monster.max_health}"
+      .progress
+        .progress-bar.progress-bar-danger{"aria-valuemax" => "#{@battle.monster.max_health}", "aria-valuemin" => "0",
+        "aria-valuenow" => "#{monster_current_health}", :role => "progressbar", :style => "width: #{monster_percent}%;"}
+
+
 
   .row
-    .col-md-3.col-md-offset-1
+    .col-md-4.col-md-offset-1
       %table.table
         %thead
           %tr
-            %th Health
             %th Attack
         %tbody
           %tr
-            %td
-              = @battle.hero.base_health
             %td
               = @battle.hero.base_attack
 
-    .col-md-3.col-md-offset-3
+    .col-md-4.col-md-offset-2
       %table.table
         %thead
           %tr
-            %th Name
-            %th Health
             %th Attack
         %tbody
           %tr
-            %td
-              = @battle.monster.name
-            %td
-              = @battle.monster.base_health
             %td
               = @battle.monster.base_attack
 

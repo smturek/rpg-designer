@@ -10,6 +10,8 @@ class HerosController < ApplicationController
 
   def create
     @hero = Hero.new(hero_params)
+    @hero.max_health = @hero.base_health
+    @hero.current_health = @hero.base_health
     @hero.save
     redirect_to heros_path
   end
