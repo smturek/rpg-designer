@@ -1,0 +1,19 @@
+.container
+
+  .page-header
+    %h1
+      = title
+
+  = form_for @skill, :html => { :class => "form-horizontal"} do |f|
+
+    .form-group
+      = f.label :name, :class => "control-label col-md-1"
+      .col-md-4
+        = f.text_field :name, :class => "form-control"
+
+    .form-group
+      = f.label :cost, :class => "control-label col-md-1"
+      .col-md-4
+        = f.text_field :cost, :class => "form-control"
+
+    = f.submit button, :class => "btn btn-default col-md-offset-1"

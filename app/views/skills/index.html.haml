@@ -1,0 +1,20 @@
+.container
+
+  .page-header
+    .pull-right
+      = link_to "Create New Skill", new_skill_path, :class => "btn btn-default"
+    %h1 Skills
+
+
+  %table.table
+    %thead
+      %tr
+        %th Name
+        %th Cost
+    %tbody
+    - @skills.each do |skill|
+      %tr
+        %td
+          = skill.name
+        %th
+          = skill.cost

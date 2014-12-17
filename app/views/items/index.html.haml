@@ -1,9 +1,9 @@
 .container
 
   .page-header
+    .pull-right
+      = link_to "Create New Item", new_item_path, :class => "btn btn-default"
     %h1 Item List
-
-  = link_to "Create New Item", new_item_path, :class => "btn btn-default pull-right"
 
   %table.table.table-hover
     %thead

@@ -1,16 +1,22 @@
 .container
 
-  .page_header
-    %h1= title
+  .jumbotron.text-center
+    %h1.ff-font= title.upcase.gsub(/(?=[A-Z])/, ' ')
 
   .row
     .col-md-4.col-md-offset-1
       %h2 Hero
-      %i.fa.fa-male.fa-5x
+      %span.fa-stack.fa-5x
+        %i.fa.fa-male.fa-stack-1x
+        - if title == "Defeat"
+          %i.fa.fa-remove.fa-stack-2x.text-danger
 
     .col-md-4.col-md-offset-2
       %h2 Monster
-      %i.fa.fa-bug.fa-5x
+      %span.fa-stack.fa-5x
+        %i.fa.fa-bug.fa-stack-1x
+        - if title == "Victory"
+          %i.fa.fa-remove.fa-stack-2x.text-danger
 
   .row
     .col-md-3.col-md-offset-1
