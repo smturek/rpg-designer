@@ -12,17 +12,25 @@
         %th Type
         %th Attack
         %th Health
+        %th Assigned Hero
     %tbody
     - @items.each do |item|
       %tr
         %td
           = item.name
         %td
-          = item.type
+          = item.item_type
         %td
           = item.attack
         %td
           = item.health
+        %td
+          = form_for [item], :html => {:class => 'form-inline'} do |f|
+
+            = f.collection_select :hero_id, Hero.all, :id, :name,
+            {include_blank: "Please select a hero... "}, {class: "form-control"}
+
+            = f.submit "Assign", :class => "btn btn-default"
         %td
           = link_to "Edit", edit_item_path(item)
           |

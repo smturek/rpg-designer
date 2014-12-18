@@ -36,7 +36,7 @@
         %tbody
           %tr
             %td
-              = @battle.hero.base_attack
+              = @battle.hero.current_attack
 
     .col-md-4.col-md-offset-2
       %table.table
@@ -46,7 +46,7 @@
         %tbody
           %tr
             %td
-              = @battle.monster.base_attack
+              = @battle.monster.current_attack
 
   = form_for @battle do |f|
     = f.hidden_field(:hero_id, :value => @battle.hero.id)

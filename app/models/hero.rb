@@ -1,6 +1,7 @@
 class Hero < ActiveRecord::Base
 
   has_many :battles, dependent: :destroy
+  has_many :items, dependent: :destroy
 
   def attack(monster_attack)
     @damage = monster_attack
@@ -12,6 +13,18 @@ class Hero < ActiveRecord::Base
       @damage -= @damage*@rand_dmg
     end
     self.current_health -= @damage.round
+  end
+
+  def starting_values
+    @item_health = 0
+    @item_attack = 0
+    self.items.each do |item|
+      @item_health += item.health
+      @item_attack += item.attack
+    end
+    self.current_attack = self.base_attack + @item_attack
+    self.max_health = self.base_health + @item_health
+    self.save
   end
 
 end

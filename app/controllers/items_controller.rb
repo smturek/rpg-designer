@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
 
   def update
     set_item
-    @item.update
+    @item.update(item_params)
     redirect_to items_path
   end
 
@@ -34,7 +34,7 @@ class ItemsController < ApplicationController
 private
 
   def item_params
-    params.require(:item).permit(:name, :type, :health, :attack)
+    params.require(:item).permit(:name, :type, :health, :attack, :hero_id)
   end
 
   def set_item

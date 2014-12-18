@@ -12,6 +12,7 @@ class HerosController < ApplicationController
     @hero = Hero.new(hero_params)
     @hero.max_health = @hero.base_health
     @hero.current_health = @hero.base_health
+    @hero.experience = 0
     @hero.save
     redirect_to heros_path
   end
@@ -26,6 +27,7 @@ class HerosController < ApplicationController
 
   def update
     set_hero
+    @hero.max_health = @hero.base_health
     @hero.update(hero_params)
     redirect_to heros_path
   end

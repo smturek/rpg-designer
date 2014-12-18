@@ -12,7 +12,8 @@ class BattlesController < ApplicationController
 
   def create
     @battle = Battle.new(battle_params)
-    @battle.hero.current_health = @battle.hero.base_health
+    @battle.initiate_battle(@battle.hero)
+    @battle.hero.current_health = @battle.hero.max_health
     @battle.hero.save!
     @battle.monster.current_health = @battle.monster.base_health
     @battle.monster.save!
@@ -47,7 +48,7 @@ class BattlesController < ApplicationController
       end
       redirect_to battle_path(@battle)
     else
-    @battle.monster.attack(@battle.hero.base_attack)
+    @battle.monster.attack(@battle.hero.current_attack)
       if @battle.hero.current_health <= 0
         Battle.transaction do
           @battle.hero.save!
