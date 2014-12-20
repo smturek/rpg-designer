@@ -48,18 +48,14 @@ class BattlesController < ApplicationController
       end
       redirect_to battle_path(@battle)
     else
-    @battle.monster.attack(@battle.hero.current_attack)
+      @battle.monster.attack(@battle.hero.current_attack)
+      Battle.transaction do
+        @battle.hero.save!
+        @battle.monster.save!
+      end
       if @battle.hero.current_health <= 0
-        Battle.transaction do
-          @battle.hero.save!
-          @battle.monster.save!
-        end
         redirect_to battle_path(@battle)
       else
-        Battle.transaction do
-          @battle.hero.save!
-          @battle.monster.save!
-        end
         redirect_to edit_battle_path(@battle)
       end
     end

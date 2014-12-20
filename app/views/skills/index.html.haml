@@ -11,6 +11,7 @@
       %tr
         %th Name
         %th Cost
+        %th Assigned Hero
     %tbody
     - @skills.each do |skill|
       %tr
@@ -18,6 +19,13 @@
           = skill.name
         %td
           = skill.cost
+        %td
+          = form_for [skill], :html => {:class => 'form-inline'} do |f|
+
+            = f.collection_select :hero_id, Hero.all, :id, :name,
+            {include_blank: "Please select a hero... "}, {class: "form-control"}
+
+            = f.submit "Assign", :class => "btn btn-default"
         %td
           = link_to "Edit", edit_skill_path(skill)
           |
