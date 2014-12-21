@@ -7,8 +7,8 @@
   - hero_percent = (hero_current_health*100)/@battle.hero.max_health
   - monster_percent = (monster_current_health*100)/@battle.monster.max_health
 
-  .row
-    .col-md-4.col-md-offset-1
+  .row.battle
+    .col-md-4.col-md-offset-1.hero
       %h2= @battle.hero.name
       %i.fa.fa-male.fa-5x
       %h5= "Health: #{hero_current_health} / #{@battle.hero.max_health}"
@@ -17,9 +17,11 @@
         "aria-valuenow" => "#{hero_current_health}", :role => "progressbar", :style => "width: #{hero_percent}%;"}
 
 
-    .col-md-4.col-md-offset-2
+    .col-md-4.col-md-offset-2.monster
       %h2= @battle.monster.name
       %i.fa.fa-bug.fa-5x
+      %buttton.btn.btn-default.col-md-offset-1.test
+        Hide Monster
       %h5= "Health: #{monster_current_health} / #{@battle.monster.max_health}"
       .progress
         .progress-bar.progress-bar-danger{"aria-valuemax" => "#{@battle.monster.max_health}", "aria-valuemin" => "0",
