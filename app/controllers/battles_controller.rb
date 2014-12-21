@@ -15,7 +15,7 @@ class BattlesController < ApplicationController
     @battle.initiate_battle(@battle.hero)
     @battle.hero.current_health = @battle.hero.max_health
     @battle.hero.save!
-    @battle.monster.current_health = @battle.monster.base_health
+    @battle.monster.current_health = @battle.monster.max_health
     @battle.monster.save!
     @battle.save
     redirect_to edit_battle_path(@battle)
