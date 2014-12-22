@@ -1,11 +1,16 @@
-$('.battle-edit').ready(function() {
+$(document).ready(function() {
 
-  $('.monster').on('click', 'button', function() {
-    $(this).closest('.monster').find('.fa-bug').hide();
+  $('button').on('click', function() {
+    $(this).hide();
   });
 
-  $('.monster').on('mouseenter', function() {
-    $(this).css(color, "red");
+  $('.fa.fa-bug.fa-5x').on('click', function() {
+    $(this).animate({'left': '-500px'})
+    $(this).animate({'left': '0px'})
+  });
+
+  $('.fa.fa-bug.fa-5x').on('mouseleave', function() {
+    $(this).animate({'right': '500px'})
   });
 
 });
