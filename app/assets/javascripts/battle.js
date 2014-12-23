@@ -9,8 +9,4 @@ $(document).ready(function() {
     $(this).animate({'left': '0px'})
   });
 
-  $('.fa.fa-bug.fa-5x').on('mouseleave', function() {
-    $(this).animate({'right': '500px'})
-  });
-
 });
