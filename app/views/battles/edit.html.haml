@@ -7,8 +7,8 @@
   - hero_percent = (hero_current_health*100)/@battle.hero.max_health
   - monster_percent = (monster_current_health*100)/@battle.monster.max_health
 
-  .row.battle
-    .col-md-4.col-md-offset-1.hero
+  .row
+    .col-md-4.col-md-offset-1
       %h2= @battle.hero.name
       %i.fa.fa-male.fa-5x
       %h5= "Health: #{hero_current_health} / #{@battle.hero.max_health}"
