@@ -28,7 +28,7 @@
           = form_for [item], :html => {:class => 'form-inline'} do |f|
 
             = f.collection_select :hero_id, Hero.all, :id, :name,
-            {include_blank: "Please select a hero... "}, {class: "form-control"}
+            {include_blank: "Unequipped"}, {class: "form-control"}
 
             = f.submit "Assign", :class => "btn btn-default"
         %td
