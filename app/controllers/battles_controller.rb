@@ -23,6 +23,10 @@ class BattlesController < ApplicationController
 
   def edit
     set_battle
+    if @battle.monster.current_health <= 0
+      @battle.hero.experience += 1
+      @battle.hero.save!
+    end
     if @battle.hero.current_health <= 0 || @battle.monster.current_health <= 0
       redirect_to battle_path(@battle)
     end

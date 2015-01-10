@@ -8,6 +8,7 @@
   %table.table.table-hover
     %thead
       %tr
+        %th Level
         %th Name
         %th Base Health
         %th Attack
@@ -16,6 +17,8 @@
     %tbody
     - @heroes.each do |hero|
       %tr
+        %td
+          = hero.level
         %td
           = hero.name
         %td
