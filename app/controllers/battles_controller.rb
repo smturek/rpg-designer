@@ -51,22 +51,59 @@ class BattlesController < ApplicationController
   def update
     set_battle
     @battle.hero.attack(@battle.monster.base_attack)
-    if @battle.monster.current_health <= 0
-      Battle.transaction do
-        @battle.hero.save!
-        @battle.monster.save!
-      end
-      redirect_to battle_path(@battle)
-    else
-      @battle.monster.attack(@battle.hero.current_attack)
-      Battle.transaction do
-        @battle.hero.save!
-        @battle.monster.save!
-      end
-      if @battle.hero.current_health <= 0
-        redirect_to battle_path(@battle)
+    respond_to do |format|
+      if @battle.monster.current_health <= 0
+        Battle.transaction do
+          @battle.hero.save!
+          @battle.monster.save!
+        end
+        format.html do
+          redirect_to battle_path(@battle)
+        end
+        format.js do
+          render json: {
+            battle: @battle,
+            hero: {current_health: @battle.hero.current_health,
+              max_health: @battle.hero.max_health},
+              monster: {current_health: @battle.monster.current_health,
+                max_health: @battle.monster.max_health},
+            redirect: battle_path(@battle)
+          }
+        end
       else
-        redirect_to edit_battle_path(@battle)
+        @battle.monster.attack(@battle.hero.current_attack)
+        Battle.transaction do
+          @battle.hero.save!
+          @battle.monster.save!
+        end
+        if @battle.hero.current_health <= 0
+          format.html do
+            redirect_to battle_path(@battle)
+          end
+          format.js do
+            render json: {
+              battle: @battle,
+              hero: {current_health: @battle.hero.current_health,
+                max_health: @battle.hero.max_health},
+                monster: {current_health: @battle.monster.current_health,
+                  max_health: @battle.monster.max_health},
+              redirect: battle_path(@battle)
+            }
+          end
+        else
+          format.html do
+            redirect_to edit_battle_path(@battle)
+          end
+          format.js do
+            render json: {
+              battle: @battle,
+              hero: {current_health: @battle.hero.current_health,
+                max_health: @battle.hero.max_health},
+              monster: {current_health: @battle.monster.current_health,
+                max_health: @battle.monster.max_health}
+            }
+          end
+        end
       end
     end
   end

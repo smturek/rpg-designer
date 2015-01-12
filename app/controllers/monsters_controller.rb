@@ -22,7 +22,6 @@ class MonstersController < ApplicationController
 
   def update
     set_monster
-    @monster.max_health = @monster.base_health
     @monster.update(monster_params)
     redirect_to monsters_path
   end

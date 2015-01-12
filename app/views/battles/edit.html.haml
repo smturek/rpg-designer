@@ -12,7 +12,8 @@
       %h2= @battle.hero.name
       %span{"data-character" => "hero"}
         %i.fa.fa-male.fa-5x
-      %h5= "Health: #{hero_current_health} / #{@battle.hero.max_health}"
+
+      //%h5= "Health: #{hero_current_health} / #{@battle.hero.max_health}"
       .progress
         .progress-bar.progress-bar-danger{"aria-valuemax" => "#{@battle.hero.max_health}", "aria-valuemin" => "0",
         "aria-valuenow" => "#{hero_current_health}", :role => "progressbar", :style => "width: #{hero_percent}%;"}
@@ -22,7 +23,7 @@
       %h2= @battle.monster.name
       %span{"data-character" => "monster"}
         %i.fa.fa-bug.fa-5x
-      %h5= "Health: #{monster_current_health} / #{@battle.monster.max_health}"
+      //%h5= "Health: #{monster_current_health} / #{@battle.monster.max_health}"
       .progress
         .progress-bar.progress-bar-danger{"aria-valuemax" => "#{@battle.monster.max_health}", "aria-valuemin" => "0",
         "aria-valuenow" => "#{monster_current_health}", :role => "progressbar", :style => "width: #{monster_percent}%;"}
@@ -32,9 +33,15 @@
       %table.table
         %thead
           %tr
+            %th Current Health
+            %th Max Health
             %th Attack
         %tbody
           %tr
+            %td{data: {health: :current, role: :hero}}
+              = @battle.hero.current_health
+            %td
+              = @battle.hero.max_health
             %td
               = @battle.hero.current_attack
 
@@ -42,15 +49,20 @@
       %table.table
         %thead
           %tr
+            %th Current Health
+            %th Max Health
             %th Attack
         %tbody
           %tr
+            %td{data: {health: :current, role: :monster}}
+              = @battle.monster.current_health
+            %td
+              = @battle.monster.max_health
             %td
               = @battle.monster.base_attack
 
-  = form_for @battle, :html => {:"data-play" => 'attack'} do |f|
+  = form_for @battle, :remote => true, :html => {data: {type: 'json'}} do |f|
     = f.hidden_field(:hero_id, :value => @battle.hero.id)
     = f.hidden_field(:monster_id, :value => @battle.monster.id)
     .col-md-offset-1.gutter
       = f.submit "Attack", :class => "btn btn-default"
-  %button.btn.btn-default.col-md-offset-1{"data-play" => "animate"}Animate

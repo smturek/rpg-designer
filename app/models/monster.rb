@@ -14,4 +14,10 @@ class Monster < ActiveRecord::Base
     self.current_health -= @damage.round
   end
 
+  def starting_values
+    self.current_attack = base_attack
+    self.max_health = base_health
+    save
+  end
+
 end

@@ -5,6 +5,7 @@ class Battle < ActiveRecord::Base
 
   def initiate_battle(hero)
     hero.starting_values
+    monster.starting_values
   end
 
 end

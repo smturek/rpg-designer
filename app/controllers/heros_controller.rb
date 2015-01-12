@@ -27,7 +27,6 @@ class HerosController < ApplicationController
 
   def update
     set_hero
-    @hero.max_health = @hero.base_health
     @hero.update(hero_params)
     redirect_to heros_path
   end
