@@ -24,7 +24,13 @@ class BattlesController < ApplicationController
   def edit
     set_battle
     if @battle.monster.current_health <= 0
-      @battle.hero.experience += 1
+      if @battle.hero.level <= 3
+        @battle.hero.experience += 5
+      elsif @battle.hero.level <= 10
+        @battle.hero.experience += 2
+      else
+        @battle.hero.experience += 1
+      end
       @battle.hero.save!
     end
     if @battle.hero.current_health <= 0 || @battle.monster.current_health <= 0
