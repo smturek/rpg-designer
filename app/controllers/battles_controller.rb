@@ -23,6 +23,13 @@ class BattlesController < ApplicationController
 
   def edit
     set_battle
+    if @battle.hero.current_health <= 0 || @battle.monster.current_health <= 0
+      redirect_to battle_path(@battle)
+    end
+  end
+
+  def show
+    set_battle
     if @battle.monster.current_health <= 0
       if @battle.hero.level <= 3
         @battle.hero.experience += 5
@@ -33,13 +40,6 @@ class BattlesController < ApplicationController
       end
       @battle.hero.save!
     end
-    if @battle.hero.current_health <= 0 || @battle.monster.current_health <= 0
-      redirect_to battle_path(@battle)
-    end
-  end
-
-  def show
-    set_battle
   end
 
   def destroy
@@ -50,7 +50,11 @@ class BattlesController < ApplicationController
 
   def update
     set_battle
-    @battle.hero.attack(@battle.monster.base_attack)
+
+    # hero attacks
+    # if the monster is still alive, the monster attacks
+    # then respond
+    @battle.monster.get_attacked(@battle.hero.base_attack)
     respond_to do |format|
       if @battle.monster.current_health <= 0
         Battle.transaction do
@@ -71,7 +75,7 @@ class BattlesController < ApplicationController
           }
         end
       else
-        @battle.monster.attack(@battle.hero.current_attack)
+        @battle.hero.get_attacked(@battle.monster.current_attack)
         Battle.transaction do
           @battle.hero.save!
           @battle.monster.save!
